@@ -1,1 +1,1 @@
-# casbin-adapter-multiple-csv
+# casbin-multiple-csv-adapter
