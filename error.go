@@ -1,6 +1,6 @@
 package multicsvadapter
 
 const (
-	errInvalidFilePath = "invalid file path, file path cannot be empty"
+	errInvalidDirPath = "invalid dir path, not found csv files"
 	errNotImplemented  = "implemented"
 )
