@@ -47,7 +47,7 @@ func (a *Adapter) LoadPolicy(model model.Model) error {
 	return nil
 }
 
-func (a *Adapter) loadPolicyFile(filepath string, model model.Model, handler func(string, model.Model)) error {
+func (a *Adapter) loadPolicyFile(filepath string, model model.Model, handler func(string, model.Model) error) error {
 	f, err := os.Open(filepath)
 	if err != nil {
 		return err
@@ -57,7 +57,9 @@ func (a *Adapter) loadPolicyFile(filepath string, model model.Model, handler fun
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
-		handler(line, model)
+		if err := handler(line, model); err != nil {
+			return err
+		}
 	}
 
 	return scanner.Err()
